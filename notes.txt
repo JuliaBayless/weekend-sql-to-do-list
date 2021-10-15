@@ -2,10 +2,10 @@ To Do List fo To Do List
 
 DATA
 [X] create DB
-[ ] create table and content 
+[X] create table and content 
     - task complete column
     - task 
-[ ] add to database.sql on VSC
+[X] add to database.sql on VSC
 
 SERVER
 [ ] organize with route and pool folders
