@@ -1,0 +1,33 @@
+To Do List fo To Do List
+
+DATA
+[X] create DB
+[ ] create table and content 
+    - task complete column
+    - task 
+[ ] add to database.sql on VSC
+
+SERVER
+[ ] organize with route and pool folders
+[ ] create server.js
+[ ] GET - tested with postman
+[ ] POST - tested with postman
+[ ] PUT - tested with postman
+[ ] DELETE - tested with postman
+
+CLIENT
+[ ] Organize Public Folders
+[ ] Input
+[ ] GET - tested 
+[ ] POST - tested 
+[ ] Render with delete and complete button
+[ ] PUT - tested 
+[ ] DELETE - tested 
+[ ] CSS
+
+STRETCH***
+
+[ ] Use bootstrap on hardcode and dynamic
+[ ] responsive to different screen sizes
+[ ] confirm on delete using bootstrap Modal or Sweet Alerts
+[ ] revers the order of confirmed todos 
