@@ -4,6 +4,7 @@ function readyNow() {
     console.log('In JQ');
     $('#submitBtn').on('click', submitThatInfo);
     $('#ListBody').on('click', '.markCompleteBtn', markComplete);
+    $('#ListBody').on('click', '.deleteBtn', deleteTask);
     getList();
 }
 
@@ -69,8 +70,19 @@ function markComplete() {
 
 
 function deleteTask() {
+    let deleteThisId = $(this).closest('tr').data('id');
+    console.log('In deleteTask', deleteThisId);
     
-}
+    $.ajax({
+        method: `DELETE`,
+        url: `/toDoRouter/${deleteThisId}`
+      }).then(function (response) {
+        console.log('SUCCESS delete request', response);
+        getList();
+      }).catch(function (error) {
+        console.log('Error in DELETE', error);
+      });
+} //end deleteTask
 
 
 //Get that info on the DOM!
@@ -81,17 +93,16 @@ function renderToDOM(listItems) {
     //loop through items
     for (let item of listItems) {
         let toDoList = $(`
-        <tr class ="markDone">
+        <tr class ="markDone ${item.completed ? 'highlight' : ''}">
             <th>${item.task}</th>
             <th>${item.deadline}</th>
             <th><button class="markCompleteBtn">Finished</button></th>
             <th><button class="deleteBtn">Delete Me</button></th>
         </tr>
         `).data(item)
+        console.log('in render', item.completed);
+        
 
-        if (item.completed === true) {
-            $(`.markDone`).addClass("highlight");
-        }
         $('#ListBody').append(toDoList);
 
     } //end loop
