@@ -1,4 +1,5 @@
 const express = require('express');
+const { parseComplete } = require('pg-protocol/dist/messages');
 const router = express.Router();
 
 
@@ -18,5 +19,33 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         }) //end .catch
 }) //end GET 
+
+
+
+
+//POST THE DATA FROM THE DB
+router.post('/', (req, res) => {
+    //packing req.body in a variable
+    let newToDo = req.body;
+    console.log('newToDo:', newToDo);
+    //filter out those inputs 
+    let queryText = `INSERT INTO "toDoList" ("task", "completed")
+    VALUES($1, $2);`;
+
+    pool.query(queryText, [newToDo.task, newToDo.completed])
+        .then(result => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log('whoops! Error in POST from DB', error);
+            //sending a call for help so the server gets a response
+            res.sendStatus(500);
+        }) //end .catch
+}) //end POST
+
+
+
+
+
 
 module.exports = router;
