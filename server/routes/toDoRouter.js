@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const { parseComplete } = require('pg-protocol/dist/messages');
 const router = express.Router();
@@ -54,17 +55,18 @@ router.put('/:id', (req, res) => {
 
     let queryText = '';
     //condition goes here!
-    if (completed === 'Completed') {
+    if (completed === 'Finished') {
         //sql command
         queryText = `
             UPDATE "toDoList"
-            SET "completed" = true
+            SET "completed" = TRUE
             WHERE "id" = $1
           `
     }
-    let value = [id]
+    let value = [id];
+    
     pool.query(queryText, value)
-        .then(result => {
+        .then(response => {
             res.sendStatus(200);
         }) //end .then
         .catch(error => {

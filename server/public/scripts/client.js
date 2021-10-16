@@ -3,6 +3,7 @@ $(readyNow);
 function readyNow() {
     console.log('In JQ');
     $('#submitBtn').on('click', submitThatInfo);
+    $('#ListBody').on('click', '.markCompleteBtn', markComplete);
     getList();
 }
 
@@ -31,7 +32,7 @@ function getList() {
 
 //Post function to send input data to DB
 function postList(listItems) {
-    $.ajax ({
+    $.ajax({
         method: 'POST',
         url: '/toDoRouter',
         //passing through listItems from submitThatInfo
@@ -45,6 +46,33 @@ function postList(listItems) {
 } //end POSTList
 
 
+function markComplete() {
+    //make variables for the id text off buttung
+    let complete = $(this).text();
+    let id = $(this).closest('tr').data('id')
+    console.log('in markComplete', complete, id);
+
+    //what's up ajax PUT
+    $.ajax({
+        method: 'PUT',
+        url: `/toDoRouter/${id}`,
+        data: {
+            completed: complete
+        }
+    }).then(function (response) {
+        console.log('SUCCESS PUT request', response);
+        getList();
+    }).catch(function (error) {
+        console.log('Error in PUT', error);
+    });//end Ajax
+}//end markComplete
+
+
+function deleteTask() {
+    
+}
+
+
 //Get that info on the DOM!
 function renderToDOM(listItems) {
     //empty table
@@ -56,12 +84,12 @@ function renderToDOM(listItems) {
         <tr class ="markDone">
             <th>${item.task}</th>
             <th>${item.deadline}</th>
-            <th><button class="markComplete">Finished</button></th>
+            <th><button class="markCompleteBtn">Finished</button></th>
             <th><button class="deleteBtn">Delete Me</button></th>
         </tr>
         `).data(item)
 
-        if (item.completed === true ) {
+        if (item.completed === true) {
             $(`.markDone`).addClass("highlight");
         }
         $('#ListBody').append(toDoList);
