@@ -8,7 +8,7 @@ const pool = require('../modules/pool');
 //GET THE DATA FROM THE DB
 router.get('/', (req, res) => {
     //getting the goods from SQL by stuffing command into variable
-    let queryText = 'SELECT * FROM "toDoList" ORDER BY "deadline";';
+    let queryText = 'SELECT * FROM "toDoList" ORDER BY "completed";';
     pool.query(queryText)
         .then(response => {
             res.send(response.rows);

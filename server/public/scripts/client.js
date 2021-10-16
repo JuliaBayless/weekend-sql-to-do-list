@@ -11,7 +11,7 @@ function submitThatInfo() {
     let listItems = {};
     listItems.task = $(`#taskIn`).val();
     listItems.deadline = $(`#deadlineIn`).val();
-    //POST GOES HERE
+    postList(listItems);
 }
 
 
@@ -29,6 +29,22 @@ function getList() {
 } //end getList - ajax GET
 
 
+//Post function to send input data to DB
+function postList(listItems) {
+    $.ajax ({
+        method: 'POST',
+        url: '/toDoRouter',
+        //passing through listItems from submitThatInfo
+        data: listItems,
+    }).then(function (response) {
+        console.log(response);
+        getList(response);
+    }).catch(function (error) {
+        console.log('Alert! error in POST', error);
+    });
+} //end POSTList
+
+
 //Get that info on the DOM!
 function renderToDOM(listItems) {
     //empty table
@@ -37,15 +53,16 @@ function renderToDOM(listItems) {
     //loop through items
     for (let item of listItems) {
         let toDoList = $(`
-        <tr class ="markdone">
+        <tr class ="markDone">
             <th>${item.task}</th>
             <th>${item.deadline}</th>
-            <button class="markComplete">Finished</button>
+            <th><button class="markComplete">Finished</button></th>
+            <th><button class="deleteBtn">Delete Me</button></th>
         </tr>
         `).data(item)
 
-        if (item.complete === true ) {
-
+        if (item.completed === true ) {
+            $(`.markDone`).addClass("highlight");
         }
         $('#ListBody').append(toDoList);
 
