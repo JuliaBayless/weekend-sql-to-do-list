@@ -8,7 +8,7 @@ const pool = require('../modules/pool');
 //GET THE DATA FROM THE DB
 router.get('/', (req, res) => {
     //getting the goods from SQL by stuffing command into variable
-    let queryText = 'SELECT * FROM "toDoList" ORDER BY "completed";';
+    let queryText = 'SELECT * FROM "toDoList" ORDER BY "deadline";';
     pool.query(queryText)
         .then(response => {
             res.send(response.rows);
@@ -29,10 +29,10 @@ router.post('/', (req, res) => {
     let newToDo = req.body;
     console.log('newToDo:', newToDo);
     //filter out those inputs 
-    let queryText = `INSERT INTO "toDoList" ("task", "completed")
+    let queryText = `INSERT INTO "toDoList" ("task", "deadline")
     VALUES($1, $2);`;
 
-    pool.query(queryText, [newToDo.task, newToDo.completed])
+    pool.query(queryText, [newToDo.task, newToDo.deadline])
         .then(result => {
             res.sendStatus(201);
         })
@@ -41,8 +41,38 @@ router.post('/', (req, res) => {
             //sending a call for help so the server gets a response
             res.sendStatus(500);
         }) //end .catch
-}) //end POST
+}); //end POST
 
+
+//PUT 
+router.put('/:id', (req, res) => {
+    let id = req.params.id;
+    let completed = req.body.completed;
+
+    //check the data coming through the variables
+    console.log('In PUT', id, completed);
+
+    let queryText = '';
+    //condition goes here!
+    if (completed === 'Completed') {
+        queryText = `
+            UPDATE "toDoList"
+            SET "completed" = true
+            WHERE "id" = $1
+          `
+    }
+    let value = [id]
+    pool.query(queryText, value)
+        .then(result => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log('whoops! Error in PUT from DB', error);
+            //sending a call for help so the server gets a response
+            res.sendStatus(500);
+        }) //end .catch
+
+}); //end PUT
 
 
 
