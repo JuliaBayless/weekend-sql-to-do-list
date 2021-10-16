@@ -1,9 +1,9 @@
 const express = require('express');
 const { parseComplete } = require('pg-protocol/dist/messages');
 const router = express.Router();
-
-
 const pool = require('../modules/pool');
+
+
 
 //GET THE DATA FROM THE DB
 router.get('/', (req, res) => {
@@ -22,7 +22,6 @@ router.get('/', (req, res) => {
 
 
 
-
 //POST THE DATA FROM THE DB
 router.post('/', (req, res) => {
     //packing req.body in a variable
@@ -35,13 +34,14 @@ router.post('/', (req, res) => {
     pool.query(queryText, [newToDo.task, newToDo.deadline])
         .then(result => {
             res.sendStatus(201);
-        })
+        }) //end .then
         .catch(error => {
             console.log('whoops! Error in POST from DB', error);
             //sending a call for help so the server gets a response
             res.sendStatus(500);
         }) //end .catch
 }); //end POST
+
 
 
 //PUT 
@@ -55,6 +55,7 @@ router.put('/:id', (req, res) => {
     let queryText = '';
     //condition goes here!
     if (completed === 'Completed') {
+        //sql command
         queryText = `
             UPDATE "toDoList"
             SET "completed" = true
@@ -64,18 +65,40 @@ router.put('/:id', (req, res) => {
     let value = [id]
     pool.query(queryText, value)
         .then(result => {
-            res.sendStatus(201);
-        })
+            res.sendStatus(200);
+        }) //end .then
         .catch(error => {
             console.log('whoops! Error in PUT from DB', error);
             //sending a call for help so the server gets a response
             res.sendStatus(500);
         }) //end .catch
-
 }); //end PUT
 
 
 
+//SERVER SIDE DELETE
+router.delete('/:id', (req, res) => {
+    //packing data in a variable
+    let id = req.params.id;
+    console.log('DELETING:', id);
+
+    //sql command
+    let queryText = `
+    DELETE FROM "toDoList"
+    WHERE "id" = $1;
+    `
+    let value = [id];
+
+    pool.query(queryText, value)
+        .then(result => {
+            res.sendStatus(204);
+        }) //end .then
+        .catch(error => {
+            console.log('whoops! Error in DELETE from DB', error);
+            //sending a call for help so the server gets a response
+            res.sendStatus(500);
+        }) //end .catch
+}) //end DELETE
 
 
 module.exports = router;
