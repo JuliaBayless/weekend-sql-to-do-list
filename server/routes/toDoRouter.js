@@ -18,3 +18,5 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         }) //end .catch
 }) //end GET 
+
+module.exports = router;

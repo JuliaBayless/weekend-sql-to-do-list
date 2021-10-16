@@ -4,7 +4,7 @@ CREATE TABLE "toDoList" (
 "completed" BOOLEAN DEFAULT FALSE,
 );
 
-INSERT INTO "koalas" ("task", "completed")
+INSERT INTO "toDoList" ("task", "completed")
 VAlUES
 ('run 4 miles', FALSE),
 ('grocery store', FALSE),

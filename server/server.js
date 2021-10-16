@@ -8,9 +8,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 
 //ROUTES
-app.use('/toDo', toDoRouter);
+app.use('/toDoRouter', toDoRouter);
 
 //listener for port phone number
 app.listen(PORT, () => {
-    console.log('listening in PORT'. PORT);
+    console.log('listening in PORT', PORT);
 });
