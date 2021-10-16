@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,25 @@
     <script src="scripts/client.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    
+    <h1>The BUSY List</h1>
+    <h3>Life is busy! Add in your ToDo's below to help keep those tasks organized
+        and see those boxes get checked off.</h3>
+    <input id="taskIn" type="text" placeholder="Your Task Here">
+    <input id="deadlineIn" type="text" placeholder="Deadline needed? ex. end of week">
+    <button id="submitBtn">Add to Task List</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody id="ListBody">
+            <!-- cool stuff appends here! -->
+        </tbody>
+    </table>
 </body>
+
 </html>

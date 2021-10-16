@@ -8,15 +8,15 @@ DATA
 [X] add to database.sql on VSC
 
 SERVER
-[ ] organize with route and pool folders
-[ ] create server.js
-[ ] GET - tested with postman
-[ ] POST - tested with postman
-[ ] PUT - tested with postman
-[ ] DELETE - tested with postman
+[X] organize with route and pool folders
+[X] create server.js
+[X] GET - tested with postman
+[X] POST - tested with postman
+[X] PUT - tested with postman
+[X] DELETE - tested with postman
 
 CLIENT
-[ ] Organize Public Folders
+[X] Organize Public Folders
 [ ] Input
 [ ] GET - tested 
 [ ] POST - tested 
