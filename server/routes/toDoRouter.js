@@ -64,7 +64,7 @@ router.put('/:id', (req, res) => {
           `
     }
     let value = [id];
-    
+
     pool.query(queryText, value)
         .then(response => {
             res.sendStatus(200);

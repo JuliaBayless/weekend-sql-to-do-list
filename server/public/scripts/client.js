@@ -72,16 +72,16 @@ function markComplete() {
 function deleteTask() {
     let deleteThisId = $(this).closest('tr').data('id');
     console.log('In deleteTask', deleteThisId);
-    
+
     $.ajax({
         method: `DELETE`,
         url: `/toDoRouter/${deleteThisId}`
-      }).then(function (response) {
+    }).then(function (response) {
         console.log('SUCCESS delete request', response);
         getList();
-      }).catch(function (error) {
+    }).catch(function (error) {
         console.log('Error in DELETE', error);
-      });
+    });
 } //end deleteTask
 
 
@@ -92,17 +92,17 @@ function renderToDOM(listItems) {
 
     //loop through items
     for (let item of listItems) {
-       toDoList = '';
+        toDoList = '';
         if (item.completed === true) {
-        toDoList = $(`
+            toDoList = $(`
         <tr class ="markDone ${item.completed ? 'highlight' : ''}">
             <th>${item.task}</th>
             <th>${item.deadline}</th>
             <th><button class="deleteBtn btn btn-outline-danger">Delete Me</button></th>
         </tr>
         `).data(item)
-     } else if (item.completed === false) {
-        toDoList = $(`
+        } else if (item.completed === false) {
+            toDoList = $(`
         <tr class ="markDone ${item.completed ? 'highlight' : ''}">
             <th>${item.task}</th>
             <th>${item.deadline}</th>
@@ -110,8 +110,8 @@ function renderToDOM(listItems) {
             <button class="deleteBtn btn btn-outline-danger">Delete Me</button></th>
         </tr>
         `).data(item)
-     }
-        
+        }
+
 
         $('#ListBody').append(toDoList);
 
