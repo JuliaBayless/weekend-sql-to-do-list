@@ -92,15 +92,25 @@ function renderToDOM(listItems) {
 
     //loop through items
     for (let item of listItems) {
-        let toDoList = $(`
+       toDoList = '';
+        if (item.completed === true) {
+        toDoList = $(`
         <tr class ="markDone ${item.completed ? 'highlight' : ''}">
             <th>${item.task}</th>
             <th>${item.deadline}</th>
-            <th><button class="markCompleteBtn">Finished</button></th>
-            <th><button class="deleteBtn">Delete Me</button></th>
+            <th><button class="deleteBtn btn btn-outline-danger">Delete Me</button></th>
         </tr>
         `).data(item)
-        console.log('in render', item.completed);
+     } else if (item.completed === false) {
+        toDoList = $(`
+        <tr class ="markDone ${item.completed ? 'highlight' : ''}">
+            <th>${item.task}</th>
+            <th>${item.deadline}</th>
+            <th><button class="markCompleteBtn btn btn-outline-success">Finished</button>
+            <button class="deleteBtn btn btn-outline-danger">Delete Me</button></th>
+        </tr>
+        `).data(item)
+     }
         
 
         $('#ListBody').append(toDoList);

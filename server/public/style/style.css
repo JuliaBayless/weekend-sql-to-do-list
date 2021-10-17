@@ -1,4 +1,56 @@
+h1 {
+   background-color: #E2C2B9;
+   font-weight: 900;
+   text-shadow: 2px 2px #F1F7E7;
+}
+
+body {
+background-color: #fffdf8;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+}
+
+h4 {
+    color: #9A9483;
+    margin-left: 20px;
+}
+
+.submitBtnDiv {
+    margin: 0px 0px 10px 60px;
+}
+
+.submitBtn {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    text-shadow: 1px 1px #9A9483;
+    background-color: #9CC094;
+    border-radius: 3px;
+    border: none;
+    height: 40px;
+    width: 20%;
+}
+
+.submitBtn:hover {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.24), 0 10px 30px 0 rgba(0,0,0,0.19);
+  }
+
+.busy {
+    color: #9cc292;
+    font-weight: bold;
+    text-shadow: 1px 1px #E7EAB5;
+    margin-left: 60px;
+}
+
+
 .highlight {
-    background-color: rgba(250, 250, 210, 0.856);
+    background-color: #F1F7E7;
     font-weight:lighter;
+    padding-top: -10px;
 };
+
+#

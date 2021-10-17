@@ -17,17 +17,17 @@ SERVER
 
 CLIENT
 [X] Organize Public Folders
-[ ] Input
-[ ] GET - tested 
-[ ] POST - tested 
-[ ] Render with delete and complete button
-[ ] PUT - tested 
-[ ] DELETE - tested 
+[X] Input
+[X] GET - tested 
+[X] POST - tested 
+[X] Render with delete and complete button
+[X] PUT - tested 
+[X] DELETE - tested 
 [ ] CSS
 
 STRETCH***
 
-[ ] Use bootstrap on hardcode and dynamic
+[ ] Use bootstrap on hard code and dynamic
 [ ] responsive to different screen sizes
 [ ] confirm on delete using bootstrap Modal or Sweet Alerts
-[ ] revers the order of confirmed todos 
+[ ] reverse the order of confirmed todos 
